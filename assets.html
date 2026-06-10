@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asset Register — SS Serengeti</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <a href="index.html">
+          <span class="logo-icon">&#x1F98F;&#x1F98F;</span>
+          <span class="logo-text">SS Serengeti</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="units.html">Units</a></li>
+        <li><a href="amenities.html">Amenities</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="dropdown-toggle active">Management &#x25BE;</a>
+          <ul class="dropdown-menu">
+            <li><a href="assets.html" class="active">&#x1F4CB; Asset Register</a></li>
+            <li><a href="incidents.html">&#x26A0; Incident Reports</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a href="contact.html" class="nav-cta">Enquire Now</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+    </div>
+    <ul class="mobile-menu" id="mobileMenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="units.html">Units</a></li>
+      <li><a href="amenities.html">Amenities</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="assets.html">Asset Register</a></li>
+      <li><a href="incidents.html">Incident Reports</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    <div class="page-banner-overlay"></div>
+    <div class="page-banner-content">
+      <p class="hero-pre">SS Serengeti</p>
+      <h1>Asset Register</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>&#8250;</span>
+        <span>Management</span>
+        <span>&#8250;</span>
+        <span>Asset Register</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="mgmt-stats-bar">
+    <div class="container mgmt-stats-inner">
+      <div class="mgmt-stat">
+        <span class="mgmt-stat-num" id="statTotal">0</span>
+        <span class="mgmt-stat-label">Total Assets</span>
+      </div>
+      <div class="mgmt-stat">
+        <span class="mgmt-stat-num good" id="statGood">0</span>
+        <span class="mgmt-stat-label">Good Condition</span>
+      </div>
+      <div class="mgmt-stat">
+        <span class="mgmt-stat-num fair" id="statFair">0</span>
+        <span class="mgmt-stat-label">Fair Condition</span>
+      </div>
+      <div class="mgmt-stat">
+        <span class="mgmt-stat-num repair" id="statRepair">0</span>
+        <span class="mgmt-stat-label">Needs Repair</span>
+      </div>
+      <div class="mgmt-stat">
+        <span class="mgmt-stat-num oos" id="statOOS">0</span>
+        <span class="mgmt-stat-label">Out of Service</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="mgmt-toolbar">
+    <div class="container mgmt-toolbar-inner">
+      <div class="cat-filters" id="catFilters">
+        <button class="cat-btn active" data-cat="all">All</button>
+        <button class="cat-btn" data-cat="Tools">Tools</button>
+        <button class="cat-btn" data-cat="Cleaning Equipment">Cleaning</button>
+        <button class="cat-btn" data-cat="CCTV Cameras">CCTV</button>
+        <button class="cat-btn" data-cat="Gate Remotes">Gate Remotes</button>
+        <button class="cat-btn" data-cat="Fire Extinguishers">Fire Ext.</button>
+        <button class="cat-btn" data-cat="Ladders">Ladders</button>
+        <button class="cat-btn" data-cat="Keys">Keys</button>
+        <button class="cat-btn" data-cat="Equipment Repairs">Repairs</button>
+      </div>
+      <div class="toolbar-actions">
+        <button class="btn btn-primary btn-sm" onclick="openModal()">+ Add Asset</button>
+        <button class="btn btn-outline-dk btn-sm" onclick="exportCSV()">&#x2B07; Export CSV</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="mgmt-content">
+    <div class="container">
+      <div class="asset-table-wrap">
+        <table class="asset-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Asset Name</th>
+              <th>Category</th>
+              <th>Qty</th>
+              <th>Condition</th>
+              <th>Location</th>
+              <th>Assigned To</th>
+              <th>Last Checked</th>
+              <th>Notes</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="assetTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT MODAL -->
+  <div class="modal-overlay" id="assetModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTitle">Add Asset</h3>
+        <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      </div>
+      <form id="assetForm" onsubmit="saveAsset(event)">
+        <input type="hidden" id="assetId" />
+        <div class="modal-grid">
+          <div class="form-group modal-full">
+            <label>Asset Name</label>
+            <input type="text" id="assetName" placeholder="e.g. Vacuum Cleaner" required />
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="assetCat" required>
+              <option value="">Select category…</option>
+              <option>Tools</option>
+              <option>Cleaning Equipment</option>
+              <option>CCTV Cameras</option>
+              <option>Gate Remotes</option>
+              <option>Fire Extinguishers</option>
+              <option>Ladders</option>
+              <option>Keys</option>
+              <option>Equipment Repairs</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" id="assetQty" min="1" value="1" required />
+          </div>
+          <div class="form-group">
+            <label>Condition</label>
+            <select id="assetCond" required>
+              <option>Good</option>
+              <option>Fair</option>
+              <option>Needs Repair</option>
+              <option>Out of Service</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="assetLoc" placeholder="e.g. Store Room" required />
+          </div>
+          <div class="form-group">
+            <label>Assigned To</label>
+            <input type="text" id="assetAssigned" placeholder="e.g. Maintenance" />
+          </div>
+          <div class="form-group">
+            <label>Last Checked</label>
+            <input type="date" id="assetDate" required />
+          </div>
+          <div class="form-group modal-full">
+            <label>Notes</label>
+            <textarea id="assetNotes" rows="2" placeholder="Any additional notes…"></textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary btn-sm">Save Asset</button>
+          <button type="button" class="btn btn-outline-dk btn-sm" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">&#x1F98F;&#x1F98F;</span>
+        <span class="logo-text">SS Serengeti</span>
+      </div>
+      <p class="footer-copy">&copy; 2026 SS Serengeti. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const ASSET_KEY = 'ss_assets';
+
+    const defaultAssets = [
+      { id:1,  name:'Hammer',                          category:'Tools',               qty:3,  condition:'Good',           location:'Store Room',            assignedTo:'Maintenance', lastChecked:'2026-06-01', notes:'' },
+      { id:2,  name:'Screwdriver Set',                 category:'Tools',               qty:2,  condition:'Good',           location:'Store Room',            assignedTo:'Maintenance', lastChecked:'2026-06-01', notes:'' },
+      { id:3,  name:'Wrench Set',                      category:'Tools',               qty:1,  condition:'Fair',           location:'Store Room',            assignedTo:'Maintenance', lastChecked:'2026-06-01', notes:'Missing one size' },
+      { id:4,  name:'Power Drill',                     category:'Tools',               qty:1,  condition:'Good',           location:'Store Room',            assignedTo:'Maintenance', lastChecked:'2026-06-01', notes:'' },
+      { id:5,  name:'Mop & Bucket',                    category:'Cleaning Equipment',  qty:4,  condition:'Good',           location:'Cleaning Store',        assignedTo:'Cleaners',    lastChecked:'2026-06-05', notes:'' },
+      { id:6,  name:'Vacuum Cleaner',                  category:'Cleaning Equipment',  qty:2,  condition:'Good',           location:'Cleaning Store',        assignedTo:'Cleaners',    lastChecked:'2026-06-05', notes:'' },
+      { id:7,  name:'Broom & Dustpan Set',             category:'Cleaning Equipment',  qty:6,  condition:'Good',           location:'Cleaning Store',        assignedTo:'Cleaners',    lastChecked:'2026-06-05', notes:'' },
+      { id:8,  name:'Pressure Washer',                 category:'Cleaning Equipment',  qty:1,  condition:'Needs Repair',   location:'Store Room',            assignedTo:'Maintenance', lastChecked:'2026-05-20', notes:'Trigger broken — repair logged' },
+      { id:9,  name:'CCTV Camera — Main Entrance',     category:'CCTV Cameras',        qty:1,  condition:'Good',           location:'Main Entrance',         assignedTo:'Security',    lastChecked:'2026-06-01', notes:'' },
+      { id:10, name:'CCTV Camera — Parking Area',      category:'CCTV Cameras',        qty:2,  condition:'Good',           location:'Parking Area',          assignedTo:'Security',    lastChecked:'2026-06-01', notes:'' },
+      { id:11, name:'CCTV Camera — Ground Floor Lobby',category:'CCTV Cameras',        qty:2,  condition:'Good',           location:'Ground Floor Lobby',    assignedTo:'Security',    lastChecked:'2026-06-01', notes:'' },
+      { id:12, name:'CCTV Camera — Floor 2 Stairwell', category:'CCTV Cameras',        qty:1,  condition:'Out of Service', location:'Floor 2 Stairwell',     assignedTo:'Security',    lastChecked:'2026-05-28', notes:'Cable fault — awaiting repair' },
+      { id:13, name:'Resident Gate Remote',            category:'Gate Remotes',        qty:48, condition:'Good',           location:'Issued to Residents',   assignedTo:'Management',  lastChecked:'2026-05-15', notes:'1 per unit. 2 spares in office.' },
+      { id:14, name:'Spare Gate Remote',               category:'Gate Remotes',        qty:2,  condition:'Good',           location:'Management Office',     assignedTo:'Management',  lastChecked:'2026-05-15', notes:'' },
+      { id:15, name:'Fire Extinguisher — Ground Floor',category:'Fire Extinguishers',  qty:2,  condition:'Good',           location:'Ground Floor',          assignedTo:'Management',  lastChecked:'2026-04-01', notes:'Next inspection: Oct 2026' },
+      { id:16, name:'Fire Extinguisher — Floor 1',     category:'Fire Extinguishers',  qty:2,  condition:'Good',           location:'Floor 1',               assignedTo:'Management',  lastChecked:'2026-04-01', notes:'Next inspection: Oct 2026' },
+      { id:17, name:'Fire Extinguisher — Floor 2',     category:'Fire Extinguishers',  qty:2,  condition:'Good',           location:'Floor 2',               assignedTo:'Management',  lastChecked:'2026-04-01', notes:'Next inspection: Oct 2026' },
+      { id:18, name:'Fire Extinguisher — Floor 3',     category:'Fire Extinguishers',  qty:2,  condition:'Good',           location:'Floor 3',               assignedTo:'Management',  lastChecked:'2026-04-01', notes:'Next inspection: Oct 2026' },
+      { id:19, name:'6ft Ladder',                      category:'Ladders',             qty:1,  condition:'Good',           location:'Store Room',            assignedTo:'Maintenance', lastChecked:'2026-06-01', notes:'' },
+      { id:20, name:'12ft Ladder',                     category:'Ladders',             qty:1,  condition:'Fair',           location:'Store Room',            assignedTo:'Maintenance', lastChecked:'2026-06-01', notes:'Needs safety check before next use' },
+      { id:21, name:'Master Key Set',                  category:'Keys',                qty:2,  condition:'Good',           location:'Security Office',       assignedTo:'Security',    lastChecked:'2026-06-10', notes:'Strictly controlled. Signed in/out.' },
+      { id:22, name:'Store Room Key',                  category:'Keys',                qty:3,  condition:'Good',           location:'Security Office',       assignedTo:'Maintenance', lastChecked:'2026-06-10', notes:'' },
+      { id:23, name:'Meter Room Key',                  category:'Keys',                qty:2,  condition:'Good',           location:'Security Office',       assignedTo:'Maintenance', lastChecked:'2026-06-10', notes:'' },
+      { id:24, name:'Pressure Washer Trigger — Repair',category:'Equipment Repairs',   qty:1,  condition:'Needs Repair',   location:'Store Room',            assignedTo:'Maintenance', lastChecked:'2026-05-20', notes:'Waiting for part. Quoted R350.' },
+    ];
+
+    let assets = [];
+    let currentFilter = 'all';
+
+    function load() {
+      const raw = localStorage.getItem(ASSET_KEY);
+      assets = raw ? JSON.parse(raw) : defaultAssets;
+      if (!raw) save();
+    }
+    function save() { localStorage.setItem(ASSET_KEY, JSON.stringify(assets)); }
+
+    const catClass = { 'Tools':'badge-cat-tools','Cleaning Equipment':'badge-cat-clean','CCTV Cameras':'badge-cat-cctv','Gate Remotes':'badge-cat-remote','Fire Extinguishers':'badge-cat-fire','Ladders':'badge-cat-ladder','Keys':'badge-cat-keys','Equipment Repairs':'badge-cat-repairs' };
+    const condClass = { 'Good':'badge-cond-good','Fair':'badge-cond-fair','Needs Repair':'badge-cond-repair','Out of Service':'badge-cond-oos' };
+
+    function render() {
+      const list = currentFilter === 'all' ? assets : assets.filter(a => a.category === currentFilter);
+      const tbody = document.getElementById('assetTableBody');
+      if (!list.length) {
+        tbody.innerHTML = `<tr><td colspan="10"><div class="tbl-empty"><div style="font-size:2.4rem">&#x1F4CB;</div><p>No assets in this category.</p></div></td></tr>`;
+        return;
+      }
+      tbody.innerHTML = list.map(a => `
+        <tr>
+          <td class="tbl-id">${a.id}</td>
+          <td><strong>${a.name}</strong></td>
+          <td><span class="badge ${catClass[a.category] || 'badge-cat-other'}">${a.category}</span></td>
+          <td>${a.qty}</td>
+          <td><span class="badge ${condClass[a.condition] || ''}">${a.condition}</span></td>
+          <td>${a.location}</td>
+          <td>${a.assignedTo || '—'}</td>
+          <td class="nowrap">${a.lastChecked || '—'}</td>
+          <td class="tbl-notes">${a.notes || '—'}</td>
+          <td class="nowrap">
+            <button class="tbl-btn tbl-edit" onclick="openModal(${a.id})">Edit</button>
+            <button class="tbl-btn tbl-del" onclick="deleteAsset(${a.id})">Delete</button>
+          </td>
+        </tr>`).join('');
+    }
+
+    function updateStats() {
+      document.getElementById('statTotal').textContent  = assets.length;
+      document.getElementById('statGood').textContent   = assets.filter(a => a.condition === 'Good').length;
+      document.getElementById('statFair').textContent   = assets.filter(a => a.condition === 'Fair').length;
+      document.getElementById('statRepair').textContent = assets.filter(a => a.condition === 'Needs Repair').length;
+      document.getElementById('statOOS').textContent    = assets.filter(a => a.condition === 'Out of Service').length;
+    }
+
+    function openModal(id) {
+      document.getElementById('assetModal').classList.add('open');
+      document.getElementById('assetForm').reset();
+      document.getElementById('assetDate').value = new Date().toISOString().split('T')[0];
+      if (id) {
+        const a = assets.find(x => x.id === id);
+        document.getElementById('modalTitle').textContent = 'Edit Asset';
+        document.getElementById('assetId').value       = a.id;
+        document.getElementById('assetName').value     = a.name;
+        document.getElementById('assetCat').value      = a.category;
+        document.getElementById('assetQty').value      = a.qty;
+        document.getElementById('assetCond').value     = a.condition;
+        document.getElementById('assetLoc').value      = a.location;
+        document.getElementById('assetAssigned').value = a.assignedTo;
+        document.getElementById('assetDate').value     = a.lastChecked;
+        document.getElementById('assetNotes').value    = a.notes;
+      } else {
+        document.getElementById('modalTitle').textContent = 'Add Asset';
+        document.getElementById('assetId').value = '';
+      }
+    }
+
+    function closeModal() { document.getElementById('assetModal').classList.remove('open'); }
+
+    function saveAsset(e) {
+      e.preventDefault();
+      const id = document.getElementById('assetId').value;
+      const data = {
+        name:        document.getElementById('assetName').value.trim(),
+        category:    document.getElementById('assetCat').value,
+        qty:         parseInt(document.getElementById('assetQty').value),
+        condition:   document.getElementById('assetCond').value,
+        location:    document.getElementById('assetLoc').value.trim(),
+        assignedTo:  document.getElementById('assetAssigned').value.trim(),
+        lastChecked: document.getElementById('assetDate').value,
+        notes:       document.getElementById('assetNotes').value.trim(),
+      };
+      if (id) {
+        const i = assets.findIndex(a => a.id === parseInt(id));
+        assets[i] = { ...assets[i], ...data };
+      } else {
+        data.id = assets.length ? Math.max(...assets.map(a => a.id)) + 1 : 1;
+        assets.push(data);
+      }
+      save(); render(); updateStats(); closeModal();
+    }
+
+    function deleteAsset(id) {
+      if (!confirm('Delete this asset? This cannot be undone.')) return;
+      assets = assets.filter(a => a.id !== id);
+      save(); render(); updateStats();
+    }
+
+    function exportCSV() {
+      const cols = ['ID','Name','Category','Qty','Condition','Location','Assigned To','Last Checked','Notes'];
+      const rows = assets.map(a => [a.id,a.name,a.category,a.qty,a.condition,a.location,a.assignedTo,a.lastChecked,a.notes].map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(','));
+      const blob = new Blob([[cols.join(','),...rows].join('\n')], {type:'text/csv'});
+      const url  = URL.createObjectURL(blob);
+      Object.assign(document.createElement('a'), {href:url, download:'ss-serengeti-assets.csv'}).click();
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById('catFilters').addEventListener('click', e => {
+      if (!e.target.classList.contains('cat-btn')) return;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      currentFilter = e.target.dataset.cat;
+      render();
+    });
+
+    document.getElementById('assetModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('assetModal')) closeModal();
+    });
+
+    load(); render(); updateStats();
+  </script>
+</body>
+</html>
