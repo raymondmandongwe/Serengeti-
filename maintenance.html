@@ -418,6 +418,13 @@
     loadMaint();
     renderMaint();
     updateMaintStats();
+
+    // Auto-switch to management tab if redirected from homepage stat card
+    if (sessionStorage.getItem('maintTab') === 'manage') {
+      sessionStorage.removeItem('maintTab');
+      var manageBtn = document.querySelector('.tab-btn[data-tab="manage"]');
+      if (manageBtn) manageBtn.click();
+    }
   </script>
 </body>
 </html>

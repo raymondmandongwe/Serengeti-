@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SS Serengeti — Complex Management System</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -46,116 +46,237 @@
     </ul>
   </nav>
 
-  <!-- DASHBOARD HERO -->
-  <div class="dash-hero">
-    <div class="dash-hero-overlay"></div>
-    <div class="container dash-hero-inner">
-      <div class="dash-hero-text">
-        <p class="hero-pre">Complex Management System</p>
-        <h1 class="dash-title">SS Serengeti</h1>
-        <p class="dash-sub">Your central hub for maintenance requests, building notices, rules, emergency contacts, and management tools.</p>
-        <div class="dash-hero-actions">
-          <a href="maintenance.html" class="btn btn-primary">&#x1F527; Submit Maintenance Request</a>
-          <a href="portal.html" class="btn btn-outline">&#x1F4E2; View Notices &amp; Portal</a>
+  <!-- ════════════════════════════════════════
+       PREMIUM HERO
+  ═════════════════════════════════════════ -->
+  <section class="premium-hero">
+    <div class="ph-overlay"></div>
+
+    <div class="container ph-inner">
+
+      <!-- LEFT: COPY -->
+      <div class="ph-left">
+
+        <div class="ph-badge">
+          <span class="ph-badge-dot"></span>
+          Complex Management System
         </div>
+
+        <h1 class="ph-title">SS Serengeti</h1>
+
+        <p class="ph-tagline">
+          Manage maintenance, notices, incidents, and resident communication from one secure portal.
+        </p>
+
+        <p class="ph-desc">
+          A digital management system built for residential complexes, body corporates, trustees, tenants, and staff.
+        </p>
+
+        <div class="ph-ctas">
+          <a href="maintenance.html" class="btn btn-primary btn-lg">&#x1F527; Submit Maintenance Request</a>
+          <a href="portal.html" class="btn btn-ghost-white btn-lg">&#x1F4E2; Open Tenant Portal</a>
+        </div>
+
+        <div class="ph-access-row">
+          <a href="portal.html" class="access-chip">&#x1F464; Resident Access</a>
+          <a href="#staff-zone" class="access-chip access-chip-staff">&#x1F512; Staff &amp; Management</a>
+        </div>
+
       </div>
-      <div class="dash-hero-stats" id="heroStats">
-        <div class="dash-stat-pill" id="heroMaint">
-          <span class="dsp-num">—</span>
-          <span class="dsp-label">Open Requests</span>
+
+      <!-- RIGHT: LIVE STATS -->
+      <div class="ph-right">
+        <div class="stat-cards-grid">
+
+          <div class="stat-card sc-orange">
+            <div class="sc-top">
+              <span class="sc-icon">&#x1F527;</span>
+              <span class="sc-live"><span class="live-pulse"></span>Live</span>
+            </div>
+            <div class="sc-num" id="sc-maint">0</div>
+            <div class="sc-label">Open Maintenance<br/>Requests</div>
+          </div>
+
+          <div class="stat-card sc-blue">
+            <div class="sc-top">
+              <span class="sc-icon">&#x1F4E2;</span>
+              <span class="sc-live"><span class="live-pulse"></span>Live</span>
+            </div>
+            <div class="sc-num" id="sc-notices">0</div>
+            <div class="sc-label">Active Building<br/>Notices</div>
+          </div>
+
+          <div class="stat-card sc-red">
+            <div class="sc-top">
+              <span class="sc-icon">&#x26A0;</span>
+              <span class="sc-live"><span class="live-pulse"></span>Live</span>
+            </div>
+            <div class="sc-num" id="sc-incidents">0</div>
+            <div class="sc-label">Open Incident<br/>Reports</div>
+          </div>
+
+          <div class="stat-card sc-green">
+            <div class="sc-top">
+              <span class="sc-icon">&#x1F4CB;</span>
+              <span class="sc-live"><span class="live-pulse"></span>Live</span>
+            </div>
+            <div class="sc-num" id="sc-assets">0</div>
+            <div class="sc-label">Assets<br/>Registered</div>
+          </div>
+
         </div>
-        <div class="dash-stat-pill" id="heroNotices">
-          <span class="dsp-num">—</span>
-          <span class="dsp-label">Active Notices</span>
-        </div>
-        <div class="dash-stat-pill" id="heroIncidents">
-          <span class="dsp-num">—</span>
-          <span class="dsp-label">Open Incidents</span>
-        </div>
+        <p class="stat-live-note">Data pulled from local system &mdash; updates automatically</p>
       </div>
+
     </div>
-  </div>
+  </section>
 
-  <!-- QUICK ACCESS GRID -->
-  <section class="dash-modules">
+  <!-- ════════════════════════════════════════
+       FOR RESIDENTS
+  ═════════════════════════════════════════ -->
+  <section class="resident-section">
     <div class="container">
-      <p class="section-label center">Quick Access</p>
-      <h2 class="section-title center">What do you need?</h2>
-      <div class="modules-grid">
+      <div class="zone-header">
+        <div class="zone-tag zone-tag-resident">&#x1F464; For Residents</div>
+        <h2 class="section-title">Resident Services</h2>
+        <p class="zone-desc">Everything you need as a tenant at SS Serengeti — no phone calls or WhatsApps required.</p>
+      </div>
 
-        <a href="maintenance.html" class="module-card module-primary">
-          <div class="module-icon">&#x1F527;</div>
-          <h3>Maintenance Request</h3>
-          <p>Report broken lights, plumbing issues, gate problems, noise complaints, and more. Track the status of your request.</p>
-          <span class="module-arrow">Submit a Request &#8594;</span>
+      <div class="resident-grid">
+
+        <!-- FEATURED: Maintenance -->
+        <a href="maintenance.html" class="resident-card rc-featured">
+          <div class="rc-most-used">Most Used</div>
+          <div class="rc-icon-wrap">&#x1F527;</div>
+          <h3>Submit Maintenance Request</h3>
+          <p>Report broken lights, plumbing problems, gate issues, noise complaints, cleaning problems, and security concerns. Receive a reference number and track progress from submission to completion.</p>
+          <ul class="rc-feature-list">
+            <li>&#10003; Broken lights &amp; electrical</li>
+            <li>&#10003; Plumbing &amp; leaks</li>
+            <li>&#10003; Gate &amp; access issues</li>
+            <li>&#10003; Noise &amp; security</li>
+          </ul>
+          <span class="rc-arrow">Submit a Request &#8594;</span>
         </a>
 
-        <a href="portal.html" class="module-card">
-          <div class="module-icon">&#x1F4E2;</div>
-          <h3>Tenant Portal</h3>
-          <p>View building notices, conduct rules, emergency contacts, loadshedding info, and downloadable documents.</p>
-          <span class="module-arrow">Open Portal &#8594;</span>
+        <!-- Notices -->
+        <a href="portal.html" class="resident-card">
+          <div class="rc-icon-wrap">&#x1F4E2;</div>
+          <h3>Notices &amp; Announcements</h3>
+          <p>Stay up to date with building notices, water interruptions, scheduled maintenance and important announcements from management.</p>
+          <span class="rc-arrow">View Notices &#8594;</span>
         </a>
 
-        <a href="portal.html#contacts" onclick="sessionStorage.setItem('portalTab','contacts')" class="module-card">
-          <div class="module-icon">&#x1F6A8;</div>
+        <!-- Emergency Contacts -->
+        <a href="portal.html" class="resident-card" onclick="sessionStorage.setItem('portalTab','contacts')">
+          <div class="rc-icon-wrap">&#x1F6A8;</div>
           <h3>Emergency Contacts</h3>
-          <p>Police, ambulance, fire, building security, 24-hour plumber, electrician, and management numbers.</p>
-          <span class="module-arrow">View Contacts &#8594;</span>
+          <p>SAPS, ambulance, fire, building security, management, and 24-hour plumber and electrician numbers. Save them in your phone.</p>
+          <span class="rc-arrow">View Contacts &#8594;</span>
         </a>
 
-        <a href="portal.html" onclick="sessionStorage.setItem('portalTab','rules')" class="module-card">
-          <div class="module-icon">&#x1F4DC;</div>
+        <!-- Rules -->
+        <a href="portal.html" class="resident-card" onclick="sessionStorage.setItem('portalTab','rules')">
+          <div class="rc-icon-wrap">&#x1F4DC;</div>
           <h3>Building Rules</h3>
-          <p>Noise, parking, communal areas, pets, visitors, refuse, and alteration policies for all residents.</p>
-          <span class="module-arrow">Read Rules &#8594;</span>
+          <p>Noise hours, parking rules, pet policy, visitor guidelines, refuse collection days and communal area conduct.</p>
+          <span class="rc-arrow">Read Rules &#8594;</span>
         </a>
 
-        <a href="portal.html" onclick="sessionStorage.setItem('portalTab','loadshedding')" class="module-card">
-          <div class="module-icon">&#x26A1;</div>
-          <h3>Loadshedding</h3>
-          <p>Stay informed about scheduled power outages. Links to EskomSePush and Eskom. Building-specific notes.</p>
-          <span class="module-arrow">Check Schedule &#8594;</span>
+        <!-- Loadshedding -->
+        <a href="portal.html" class="resident-card" onclick="sessionStorage.setItem('portalTab','loadshedding')">
+          <div class="rc-icon-wrap">&#x26A1;</div>
+          <h3>Loadshedding Info</h3>
+          <p>Current schedule, EskomSePush link, and how power outages affect the building gate, lift and common lighting.</p>
+          <span class="rc-arrow">Check Schedule &#8594;</span>
         </a>
 
-        <a href="portal.html" onclick="sessionStorage.setItem('portalTab','documents')" class="module-card">
-          <div class="module-icon">&#x1F4C2;</div>
+        <!-- Documents -->
+        <a href="portal.html" class="resident-card" onclick="sessionStorage.setItem('portalTab','documents')">
+          <div class="rc-icon-wrap">&#x1F4C2;</div>
           <h3>Documents &amp; Forms</h3>
-          <p>Download conduct rules, maintenance forms, move-in checklists, pet application forms and more.</p>
-          <span class="module-arrow">View Documents &#8594;</span>
-        </a>
-
-        <a href="assets.html" class="module-card module-staff">
-          <div class="module-icon">&#x1F4CB;</div>
-          <h3>Asset Register</h3>
-          <p class="module-staff-tag">Staff Only</p>
-          <p>Track tools, CCTV cameras, gate remotes, fire extinguishers, keys and equipment repairs.</p>
-          <span class="module-arrow">Open Register &#8594;</span>
-        </a>
-
-        <a href="incidents.html" class="module-card module-staff">
-          <div class="module-icon">&#x26A0;</div>
-          <h3>Incident Reports</h3>
-          <p class="module-staff-tag">Staff Only</p>
-          <p>Security, cleaners and maintenance staff log and track gate failures, theft, leaks, and other incidents.</p>
-          <span class="module-arrow">View Reports &#8594;</span>
+          <p>Download conduct rules, maintenance forms, move-in checklists, pet applications and other policy documents.</p>
+          <span class="rc-arrow">View Documents &#8594;</span>
         </a>
 
       </div>
     </div>
   </section>
 
-  <!-- LIVE NOTICES PREVIEW -->
+  <!-- ════════════════════════════════════════
+       FOR STAFF & MANAGEMENT
+  ═════════════════════════════════════════ -->
+  <section class="staff-zone" id="staff-zone">
+    <div class="container">
+
+      <div class="zone-header staff-zone-header">
+        <div>
+          <div class="zone-tag zone-tag-staff">&#x1F512; Staff &amp; Management Access</div>
+          <h2 class="section-title light">Management Dashboard</h2>
+          <p class="zone-desc light">Administrative tools for complex managers, trustees, body corporate members, security, cleaners, and maintenance staff.</p>
+        </div>
+        <div class="restricted-notice">
+          <span class="restricted-icon">&#x1F6AB;</span>
+          <div>
+            <strong>Restricted Area</strong>
+            <span>Authorised complex personnel only</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="staff-grid">
+
+        <a href="maintenance.html" class="staff-card" onclick="sessionStorage.setItem('maintTab','manage')">
+          <div class="staff-only-badge">Staff Only</div>
+          <div class="staff-card-icon">&#x1F527;</div>
+          <h3>Maintenance Dashboard</h3>
+          <p>View all tenant requests. Update status, assign to contractors, add internal notes and track every job from open to resolved.</p>
+          <span class="staff-arrow">Open Dashboard &#8594;</span>
+        </a>
+
+        <a href="assets.html" class="staff-card">
+          <div class="staff-only-badge">Staff Only</div>
+          <div class="staff-card-icon">&#x1F4CB;</div>
+          <h3>Asset Register</h3>
+          <p>Track all building assets: tools, CCTV cameras, gate remotes, fire extinguishers, ladders, keys and equipment repairs.</p>
+          <span class="staff-arrow">Open Register &#8594;</span>
+        </a>
+
+        <a href="incidents.html" class="staff-card">
+          <div class="staff-only-badge">Staff Only</div>
+          <div class="staff-card-icon">&#x26A0;</div>
+          <h3>Incident Reports</h3>
+          <p>Log gate failures, theft attempts, property damage, water leaks, noise incidents and all security events with full detail.</p>
+          <span class="staff-arrow">View Reports &#8594;</span>
+        </a>
+
+        <a href="portal.html" class="staff-card">
+          <div class="staff-only-badge">Staff Only</div>
+          <div class="staff-card-icon">&#x1F4E2;</div>
+          <h3>Post Notices</h3>
+          <p>Push announcements, alerts, reminders and event notices directly to all residents through the tenant portal board.</p>
+          <span class="staff-arrow">Post a Notice &#8594;</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       RECENT NOTICES (live from storage)
+  ═════════════════════════════════════════ -->
   <section class="dash-notices">
     <div class="container">
       <div class="dash-section-header">
         <div>
           <p class="section-label">Latest Updates</p>
-          <h2 class="section-title">Recent Notices</h2>
+          <h2 class="section-title">Recent Building Notices</h2>
         </div>
         <a href="portal.html" class="btn btn-outline-dk btn-sm">All Notices &#8594;</a>
       </div>
-      <div id="dashNoticeList" class="dash-notice-grid"></div>
+      <div id="dashNoticeList" class="dash-notice-grid">
+        <p style="color:#999;text-align:center;padding:20px;grid-column:1/-1">Loading notices…</p>
+      </div>
     </div>
   </section>
 
@@ -164,12 +285,12 @@
     <div class="container emerg-strip-inner">
       <span class="emerg-strip-label">&#x1F6A8; Emergency Numbers</span>
       <div class="emerg-numbers">
-        <a href="tel:10111" class="emerg-num"><strong>SAPS</strong> 10111</a>
-        <a href="tel:10177" class="emerg-num"><strong>Ambulance</strong> 10177</a>
-        <a href="tel:+27210000001" class="emerg-num"><strong>Security</strong> +27 21 000 0001</a>
-        <a href="tel:+27210000000" class="emerg-num"><strong>Management</strong> +27 21 000 0000</a>
+        <a href="tel:10111"          class="emerg-num"><strong>SAPS</strong> 10111</a>
+        <a href="tel:10177"          class="emerg-num"><strong>Ambulance</strong> 10177</a>
+        <a href="tel:+27210000001"   class="emerg-num"><strong>Security</strong> +27 21 000 0001</a>
+        <a href="tel:+27210000000"   class="emerg-num"><strong>Management</strong> +27 21 000 0000</a>
       </div>
-      <a href="portal.html" class="btn btn-primary btn-sm" style="flex-shrink:0">All Contacts</a>
+      <a href="portal.html" onclick="sessionStorage.setItem('portalTab','contacts')" class="btn btn-primary btn-sm" style="flex-shrink:0">All Contacts</a>
     </div>
   </section>
 
@@ -191,50 +312,76 @@
 
   <script src="script.js"></script>
   <script>
-    // Pull live counts from localStorage to populate hero stats
-    function loadDashStats() {
-      const mRaw = localStorage.getItem('ss_maintenance');
-      const nRaw = localStorage.getItem('ss_notices');
-      const iRaw = localStorage.getItem('ss_incidents');
+    // ── Count-up animation ──────────────────────────────
+    function countUp(el, target, duration) {
+      duration = duration || 1400;
+      var startTime = null;
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var eased    = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    }
 
-      const requests  = mRaw ? JSON.parse(mRaw) : [];
-      const notices   = nRaw ? JSON.parse(nRaw)  : [];
-      const incidents = iRaw ? JSON.parse(iRaw)  : [];
+    // ── Load live stats from localStorage ──────────────
+    function loadStats() {
+      var mRaw = localStorage.getItem('ss_maintenance');
+      var nRaw = localStorage.getItem('ss_notices');
+      var iRaw = localStorage.getItem('ss_incidents');
+      var aRaw = localStorage.getItem('ss_assets');
 
-      const openReqs = requests.filter(r => r.status !== 'Completed' && r.status !== 'Cannot Fix').length;
-      const openInc  = incidents.filter(i => i.status !== 'Resolved').length;
+      var m   = mRaw ? JSON.parse(mRaw) : null;
+      var n   = nRaw ? JSON.parse(nRaw) : null;
+      var inc = iRaw ? JSON.parse(iRaw) : null;
+      var a   = aRaw ? JSON.parse(aRaw) : null;
 
-      document.getElementById('heroMaint').querySelector('.dsp-num').textContent    = openReqs  || '0';
-      document.getElementById('heroNotices').querySelector('.dsp-num').textContent  = notices.length || '0';
-      document.getElementById('heroIncidents').querySelector('.dsp-num').textContent = openInc   || '0';
+      var openRequests  = m   ? m.filter(function(r) { return r.status !== 'Completed' && r.status !== 'Cannot Fix'; }).length : 7;
+      var activeNotices = n   ? n.length : 5;
+      var openIncidents = inc ? inc.filter(function(i) { return i.status !== 'Resolved'; }).length : 5;
+      var assetsCount   = a   ? a.length : 24;
 
-      // Render up to 3 latest notices
-      const catColor = { 'Alert':'badge-cond-repair','Notice':'badge-cat-tools','Reminder':'badge-cat-remote','Event':'badge-cat-clean' };
-      const latest = [...notices].sort((a,b) => {
+      countUp(document.getElementById('sc-maint'),     openRequests);
+      countUp(document.getElementById('sc-notices'),   activeNotices);
+      countUp(document.getElementById('sc-incidents'), openIncidents);
+      countUp(document.getElementById('sc-assets'),    assetsCount);
+
+      renderDashNotices(n);
+    }
+
+    // ── Render recent notices ───────────────────────────
+    var catColor = { 'Alert':'badge-cond-repair','Notice':'badge-cat-tools','Reminder':'badge-cat-remote','Event':'badge-cat-clean' };
+
+    function renderDashNotices(notices) {
+      var container = document.getElementById('dashNoticeList');
+      if (!notices || !notices.length) {
+        container.innerHTML = '<p style="color:#999;text-align:center;padding:30px 0;grid-column:1/-1">No notices yet. <a href="portal.html">Go to Tenant Portal</a> to post one.</p>';
+        return;
+      }
+      var sorted = notices.slice().sort(function(a,b) {
         if (a.pinned && !b.pinned) return -1;
         if (!a.pinned && b.pinned) return 1;
         return b.date.localeCompare(a.date);
       }).slice(0,3);
 
-      const container = document.getElementById('dashNoticeList');
-      if (!latest.length) {
-        container.innerHTML = '<p style="color:#999;text-align:center;padding:30px 0">No notices yet. <a href="portal.html">Go to Tenant Portal</a> to post one.</p>';
-        return;
-      }
-      container.innerHTML = latest.map(n => `
-        <div class="dash-notice-card">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-            ${n.pinned ? '<span style="font-size:0.75rem;background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:10px;font-weight:600">&#x1F4CC; Pinned</span>' : ''}
-            <span class="badge ${catColor[n.category]||'badge-cat-other'}">${n.category}</span>
-            <span style="font-size:0.78rem;color:#bbb">${n.date}</span>
-          </div>
-          <h4>${n.title}</h4>
-          <p>${n.body.length > 120 ? n.body.slice(0,120) + '…' : n.body}</p>
-          <a href="portal.html" style="font-size:0.82rem;color:var(--gold);font-weight:500">Read more &#8594;</a>
-        </div>`).join('');
+      container.innerHTML = sorted.map(function(n) {
+        return '<div class="dash-notice-card">' +
+          '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">' +
+          (n.pinned ? '<span style="font-size:0.75rem;background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:10px;font-weight:600">&#x1F4CC; Pinned</span>' : '') +
+          '<span class="badge ' + (catColor[n.category] || 'badge-cat-other') + '">' + n.category + '</span>' +
+          '<span style="font-size:0.78rem;color:#bbb">&#x1F4C5; ' + n.date + '</span>' +
+          '</div>' +
+          '<h4>' + n.title + '</h4>' +
+          '<p>' + (n.body.length > 130 ? n.body.slice(0,130) + '…' : n.body) + '</p>' +
+          '<a href="portal.html" style="font-size:0.82rem;color:var(--gold);font-weight:600">Read more &#8594;</a>' +
+          '</div>';
+      }).join('');
     }
 
-    loadDashStats();
+    loadStats();
   </script>
 </body>
 </html>

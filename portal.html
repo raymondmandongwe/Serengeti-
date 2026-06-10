@@ -621,6 +621,13 @@
 
     loadNotices();
     renderNotices();
+
+    // Auto-switch tab if redirected from homepage or maintenance page
+    var savedTab = sessionStorage.getItem('portalTab');
+    if (savedTab) {
+      sessionStorage.removeItem('portalTab');
+      switchPortalTab(savedTab);
+    }
   </script>
 </body>
 </html>
