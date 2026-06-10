@@ -1,4 +1,5 @@
 /* ── Reset & Base ── */
+/* Multi-page site: index / about / units / amenities / contact */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -658,4 +659,247 @@ a { text-decoration: none; }
   .contact-form { padding: 28px 20px; }
 
   .hero-actions { flex-direction: column; align-items: center; }
+}
+
+/* ─────────────────────────────────────────
+   NAV LOGO LINK
+───────────────────────────────────────── */
+.nav-logo a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* Active nav link */
+.nav-links a.active { color: var(--gold-lt); }
+
+/* ─────────────────────────────────────────
+   PAGE BANNER (inner pages)
+───────────────────────────────────────── */
+.page-banner {
+  position: relative;
+  height: 340px;
+  background: url('serengeti.jpg') center 40% / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.page-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.55) 100%);
+}
+
+.page-banner-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 70px;
+}
+
+.page-banner-content h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.65);
+}
+
+.breadcrumb a {
+  color: var(--gold-lt);
+  text-decoration: none;
+}
+
+.breadcrumb span { color: rgba(255,255,255,0.5); }
+
+/* ─────────────────────────────────────────
+   QUICK LINKS (home page)
+───────────────────────────────────────── */
+.quick-links {
+  padding: 80px 0;
+  background: var(--light);
+}
+
+.ql-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.ql-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+  border: 2px solid transparent;
+  transition: all var(--trans);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.ql-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.ql-icon { font-size: 2.2rem; }
+
+.ql-card h3 {
+  font-size: 1.25rem;
+  color: var(--dark);
+}
+
+.ql-card p { font-size: 0.88rem; flex: 1; }
+
+.ql-arrow {
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-top: 6px;
+  transition: transform var(--trans);
+}
+
+.ql-card:hover .ql-arrow { transform: translateX(6px); }
+
+/* ─────────────────────────────────────────
+   VALUES (about page)
+───────────────────────────────────────── */
+.values {
+  padding: 90px 0;
+  background: var(--light);
+}
+
+.values .section-title { margin-bottom: 52px; }
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.value-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 36px 24px;
+  text-align: center;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  border-top: 3px solid transparent;
+  transition: all var(--trans);
+}
+
+.value-card:hover {
+  border-top-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.value-icon { font-size: 2.4rem; margin-bottom: 14px; }
+
+.value-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+.value-card p { font-size: 0.88rem; color: var(--text); }
+
+/* ─────────────────────────────────────────
+   FEATURES STRIP (units page)
+───────────────────────────────────────── */
+.features-strip {
+  padding: 70px 0;
+  background: var(--white);
+}
+
+.features-strip .section-label { margin-bottom: 32px; }
+
+.features-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.feature-item {
+  background: var(--light);
+  border: 1.5px solid #e5e0d6;
+  border-radius: 40px;
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark);
+  transition: all var(--trans);
+}
+
+.feature-item:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--dark);
+}
+
+/* ─────────────────────────────────────────
+   PAGE CTA BANNER
+───────────────────────────────────────── */
+.page-cta {
+  position: relative;
+  padding: 90px 0;
+  background: url('serengeti.jpg') center 60% / cover no-repeat;
+  text-align: center;
+}
+
+.page-cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15,15,15,0.75);
+}
+
+.page-cta-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.page-cta-inner h2 {
+  color: var(--white);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 14px;
+}
+
+.page-cta-inner p {
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 32px;
+  font-size: 1.05rem;
+}
+
+/* Amenities as standalone page (no parallax fixed) */
+.amenities-page {
+  background-attachment: scroll;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — new components
+───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ql-grid { grid-template-columns: repeat(2, 1fr); }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .ql-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .page-banner { height: 260px; }
 }
